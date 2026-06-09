@@ -1,0 +1,23 @@
+name: Reproducibility Audit
+
+on:
+  push:
+    branches: ["main", "master"]
+  pull_request:
+    branches: ["main", "master"]
+
+jobs:
+  reprobe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v4
+
+      - name: Install reprobe
+        run: uv tool install "git+https://github.com/YashTandon05/reprobe.git"
+
+      - name: Run reproducibility audit
+        run: reprobe . --min-score 60 --fail
