@@ -9,6 +9,7 @@ from reprobe.checks.dependencies import check_dependencies
 from reprobe.checks.paths import check_paths
 from reprobe.checks.nondeterminism import check_nondeterminism
 from reprobe.checks.data_tracking import check_data_tracking
+from reprobe.checks.environment import check_environment
 
 app = typer.Typer(add_completion=False)
 console = Console()
@@ -32,9 +33,9 @@ def audit(
                check_dependencies(repo_path), 
                check_paths(repo_path), 
                check_nondeterminism(repo_path),
-               check_data_tracking(repo_path)]
+               check_data_tracking(repo_path),
+               check_environment(repo_path)]
 
-    # Render results.
     table = Table(show_header=True, header_style="bold")
     table.add_column("Check")
     table.add_column("Category")
