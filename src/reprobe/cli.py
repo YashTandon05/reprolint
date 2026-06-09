@@ -7,6 +7,7 @@ from rich.table import Table
 from reprobe.checks.seeds import check_seeds
 from reprobe.checks.dependencies import check_dependencies
 from reprobe.checks.paths import check_paths
+from reprobe.checks.nondeterminism import check_nondeterminism
 
 app = typer.Typer(add_completion=False)
 console = Console()
@@ -26,7 +27,7 @@ def audit(
         f"\n[bold cyan]reprobe[/bold cyan] — auditing [yellow]{repo_path}[/yellow]\n"
     )
 
-    results = [check_seeds(repo_path), check_dependencies(repo_path), check_paths(repo_path)]
+    results = [check_seeds(repo_path), check_dependencies(repo_path), check_paths(repo_path), check_nondeterminism(repo_path)]
 
     # Render results.
     table = Table(show_header=True, header_style="bold")
