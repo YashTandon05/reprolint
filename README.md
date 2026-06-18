@@ -1,13 +1,13 @@
-# reprobe
+# reprolint
 
-A reproducibility auditor for machine learning repositories. `reprobe` statically analyzes a codebase using AST parsing and literature-backed checks to produce a scored reproducibility report — identifying missing seeds, unpinned dependencies, hardcoded paths, non-deterministic operations, untracked data, and missing environment captures.
+A reproducibility auditor for machine learning repositories. `reprolint` statically analyzes a codebase using AST parsing and literature-backed checks to produce a scored reproducibility report — identifying missing seeds, unpinned dependencies, hardcoded paths, non-deterministic operations, untracked data, and missing environment captures.
 
 Works as a CLI tool on local directories or public GitHub URLs, and integrates with GitHub Actions as a CI reproducibility gate.
 
 ## Installation
 
 ```bash
-uv tool install "git+https://github.com/YashTandon05/reprobe.git"
+uv tool install "git+https://github.com/YashTandon05/reprolint.git"
 ```
 
 ## Usage
@@ -15,31 +15,31 @@ uv tool install "git+https://github.com/YashTandon05/reprobe.git"
 ### Audit a local repository
 
 ```bash
-reprobe /path/to/your/ml/project
+reprolint /path/to/your/ml/project
 ```
 
 ### Audit a public GitHub repository
 
 ```bash
-reprobe https://github.com/user/repo
+reprolint https://github.com/user/repo
 ```
 
 ### Use as a CI gate (fail if score is below threshold)
 
 ```bash
-reprobe . --min-score 60 --fail
+reprolint . --min-score 60 --fail
 ```
 
 ### Save the report to a file
 
 ```bash
-reprobe . --output report.txt
+reprolint . --output report.txt
 ```
 
 ## Example output
 
 ```
-reprobe — auditing myproject/
+reprolint — auditing myproject/
 
 ┌──────────────────────────┬───────────────┬────────┬───────┐
 │ Check                    │ Category      │ Result │ Score │
@@ -87,7 +87,7 @@ Scores are aggregated into a weighted total out of 100. Category weights reflect
 
 ## GitHub Actions integration
 
-Add this to your repository at `.github/workflows/reprobe.yml` to enforce a reproducibility threshold on every push and pull request:
+Add this to your repository at `.github/workflows/reprolint.yml` to enforce a reproducibility threshold on every push and pull request:
 
 ```yaml
 name: Reproducibility Audit
@@ -99,7 +99,7 @@ on:
     branches: ["main", "master"]
 
 jobs:
-  reprobe:
+  reprolint:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -108,11 +108,11 @@ jobs:
       - name: Install uv
         uses: astral-sh/setup-uv@v4
 
-      - name: Install reprobe
-        run: uv tool install "git+https://github.com/YashTandon05/reprobe.git"
+      - name: Install reprolint
+        run: uv tool install "git+https://github.com/YashTandon05/reprolint.git"
 
       - name: Run reproducibility audit
-        run: reprobe . --min-score 60 --fail
+        run: reprolint . --min-score 60 --fail
 ```
 
 ## References

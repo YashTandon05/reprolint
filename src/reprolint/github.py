@@ -34,7 +34,7 @@ def _normalize(url: str) -> str:
 def cloned(url: str):
     """Context manager: shallow-clone a GitHub repo, yield its path, then clean up."""
     url = _normalize(url)
-    tmp = Path(tempfile.mkdtemp(prefix="reprobe_"))
+    tmp = Path(tempfile.mkdtemp(prefix="reprolint_"))
     try:
         Repo.clone_from(url, tmp, depth=1, no_single_branch=True)
         yield tmp

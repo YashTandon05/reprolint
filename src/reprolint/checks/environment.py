@@ -6,7 +6,7 @@ try:
 except ModuleNotFoundError:
     import tomli as tomllib
 
-from reprobe.checks.base import Category, CheckResult, Finding, Severity
+from reprolint.checks.base import Category, CheckResult, Finding, Severity
 
 MAX_SCORE = 10.0
 

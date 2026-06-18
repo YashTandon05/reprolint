@@ -7,7 +7,7 @@ on:
     branches: ["main", "master"]
 
 jobs:
-  reprobe:
+  reprolint:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -16,8 +16,8 @@ jobs:
       - name: Install uv
         uses: astral-sh/setup-uv@v4
 
-      - name: Install reprobe
-        run: uv tool install "git+https://github.com/YashTandon05/reprobe.git"
+      - name: Install reprolint
+        run: uv tool install "git+https://github.com/YashTandon05/reprolint.git"
 
       - name: Run reproducibility audit
-        run: reprobe . --min-score 60 --fail
+        run: reprolint . --min-score 60 --fail

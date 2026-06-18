@@ -2,7 +2,7 @@ from __future__ import annotations
 import ast
 from pathlib import Path
 
-from reprobe.checks.base import Category, CheckResult, Finding, Severity
+from reprolint.checks.base import Category, CheckResult, Finding, Severity
 
 MAX_SCORE = 15.0
 

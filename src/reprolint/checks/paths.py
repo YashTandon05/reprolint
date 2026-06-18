@@ -3,7 +3,7 @@ import ast
 import re
 from pathlib import Path
 
-from reprobe.checks.base import Category, CheckResult, Finding, Severity
+from reprolint.checks.base import Category, CheckResult, Finding, Severity
 
 MAX_SCORE = 15.0
 

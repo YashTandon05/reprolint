@@ -8,7 +8,7 @@ except ModuleNotFoundError:
 
 from packaging.requirements import InvalidRequirement, Requirement
 
-from reprobe.checks.base import Category, CheckResult, Finding, Severity
+from reprolint.checks.base import Category, CheckResult, Finding, Severity
 
 MAX_SCORE = 20.0
 LOCK_FILES = ("uv.lock", "poetry.lock")

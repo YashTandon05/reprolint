@@ -1,7 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 
-from reprobe.checks.base import Category, CheckResult
+from reprolint.checks.base import Category, CheckResult
 
 CATEGORY_WEIGHTS: dict[Category, float] = {
     Category.ENVIRONMENT: 30.0,

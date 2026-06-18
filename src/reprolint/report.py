@@ -2,8 +2,8 @@ from __future__ import annotations
 from rich.console import Console
 from rich.table import Table
 
-from reprobe.checks.base import Severity
-from reprobe.scorer import Scorecard
+from reprolint.checks.base import Severity
+from reprolint.scorer import Scorecard
 
 _SEVERITY_STYLE = {
     Severity.HIGH: "red",

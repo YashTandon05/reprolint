@@ -3,15 +3,15 @@ from pathlib import Path
 import typer
 from rich.console import Console
 
-from reprobe.github import cloned, is_github_url, repo_display_name
-from reprobe.checks.data_tracking import check_data_tracking
-from reprobe.checks.dependencies import check_dependencies
-from reprobe.checks.environment import check_environment
-from reprobe.checks.nondeterminism import check_nondeterminism
-from reprobe.checks.paths import check_paths
-from reprobe.checks.seeds import check_seeds
-from reprobe.report import render
-from reprobe.scorer import score
+from reprolint.github import cloned, is_github_url, repo_display_name
+from reprolint.checks.data_tracking import check_data_tracking
+from reprolint.checks.dependencies import check_dependencies
+from reprolint.checks.environment import check_environment
+from reprolint.checks.nondeterminism import check_nondeterminism
+from reprolint.checks.paths import check_paths
+from reprolint.checks.seeds import check_seeds
+from reprolint.report import render
+from reprolint.scorer import score
 
 app = typer.Typer(add_completion=False)
 console = Console()
@@ -36,7 +36,7 @@ def audit(
     """Audit a machine learning repository for reproducibility."""
     if is_github_url(target):
         display = repo_display_name(target)
-        console.print(f"\n[bold cyan]reprobe[/bold cyan] — cloning [yellow]{display}[/yellow] ...\n")
+        console.print(f"\n[bold cyan]reprolint[/bold cyan] — cloning [yellow]{display}[/yellow] ...\n")
         try:
             with cloned(target) as repo_path:
                 _run_audit(repo_path, target=display, min_score=min_score, fail=fail, output=output)
@@ -48,7 +48,7 @@ def audit(
         if not repo_path.exists():
             console.print(f"[red]Path does not exist:[/red] {repo_path}")
             raise typer.Exit(code=2)
-        console.print(f"\n[bold cyan]reprobe[/bold cyan] — auditing [yellow]{repo_path}[/yellow]\n")
+        console.print(f"\n[bold cyan]reprolint[/bold cyan] — auditing [yellow]{repo_path}[/yellow]\n")
         _run_audit(repo_path, target=str(repo_path), min_score=min_score, fail=fail, output=output)
 
 
