@@ -1,5 +1,10 @@
 # reprolint
 
+[![PyPI version](https://img.shields.io/pypi/v/reprolint)](https://pypi.org/project/reprolint/)
+[![Python versions](https://img.shields.io/pypi/pyversions/reprolint)](https://pypi.org/project/reprolint/)
+[![License](https://img.shields.io/github/license/YashTandon05/reprolint)](https://github.com/YashTandon05/reprolint/blob/main/LICENSE)
+[![CI](https://img.shields.io/github/actions/workflow/status/YashTandon05/reprolint/ci.yml?label=CI)](https://github.com/YashTandon05/reprolint/actions)
+
 A reproducibility auditor for machine learning repositories. `reprolint` statically analyzes a codebase using AST parsing and literature-backed checks to produce a scored reproducibility report — identifying missing seeds, unpinned dependencies, hardcoded paths, non-deterministic operations, untracked data, and missing environment captures.
 
 Works as a CLI tool on local directories or public GitHub URLs, and integrates with GitHub Actions as a CI reproducibility gate.
@@ -7,7 +12,13 @@ Works as a CLI tool on local directories or public GitHub URLs, and integrates w
 ## Installation
 
 ```bash
-uv tool install "git+https://github.com/YashTandon05/reprolint.git"
+pip install reprolint
+```
+
+Or with uv:
+
+```bash
+uv tool install reprolint
 ```
 
 ## Usage
@@ -109,7 +120,7 @@ jobs:
         uses: astral-sh/setup-uv@v4
 
       - name: Install reprolint
-        run: uv tool install "git+https://github.com/YashTandon05/reprolint.git"
+        run: uv tool install reprolint
 
       - name: Run reproducibility audit
         run: reprolint . --min-score 60 --fail
